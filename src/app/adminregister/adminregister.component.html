@@ -1,0 +1,73 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+    integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+
+<div class="image">
+
+    <div class="box">
+        <!-- register loading page -->
+        <div *ngIf="adminRegisterSuccess" class="container text-center mt-5 p-5">
+            <h3 class="text-white">Your Data getting Registered... please wait...
+                <div class="spinner-border text-info" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
+            </h3>
+
+        </div>
+        <div *ngIf="!adminRegisterSuccess" class="container">
+            
+
+            <form (ngSubmit)="adminregister()" [formGroup]="adminregisterForm">
+
+                <div class="top-header">
+                    <header>Register</header>
+                </div>
+
+                <div class="input-field">
+                    <input name="acno" formControlName="id" type="text" class="input" placeholder="ID"
+                        required>
+                        <i class="fa-regular fa-id-badge"></i>
+                    <div *ngIf="this.adminregisterForm.get('id')?.errors&&this.adminregisterForm.get('id')?.touched"
+                        class="text-danger">
+                        *Invalid id
+                    </div>
+                </div>
+                <div class="input-field">
+                    <input name="username" formControlName="username" type="text" class="input" placeholder="Username"
+                        required>
+                    <i class="fa-solid fa-user"></i>
+                    <div *ngIf="this.adminregisterForm.get('username')?.errors&&this.adminregisterForm.get('username')?.touched"
+                        class="text-danger">
+                        *Invalid Username
+                    </div>
+                </div>
+                <div class="input-field">
+                    <input name="password" formControlName="password" type="password" class="input"
+                        placeholder="Password" required>
+                    <i class="fa-solid fa-lock"></i>
+                    <div *ngIf="this.adminregisterForm.get('password')?.errors&&this.adminregisterForm.get('password')?.touched"
+                        class="text-danger">
+                        *Invalid Password
+                    </div>
+                </div>
+                <div class="input-field">
+                    <h4 class="text-danger">{{adminRegisterError}}</h4>
+                    <input type="submit" class="submit" value="Sign up">
+                </div>
+                <div class="bottom">
+
+                    <div class="right">
+                        <label class="ms-4">Already Have an Account? <a routerLink="/adminlogin" class="m-2">Login
+                                Here</a></label>
+                    </div>
+
+                </div>
+            </form>
+
+        </div>
+
+    </div>
+
+
+</div>

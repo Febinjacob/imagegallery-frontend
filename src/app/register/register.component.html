@@ -1,0 +1,73 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+    integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+
+<div class="image">
+
+    <div class="box">
+        <!-- register loading page -->
+        <div *ngIf="RegisterSuccess" class="container text-center mt-5 p-5">
+            <h3 class="text-white">Your Data getting Registered... please wait...
+                <div class="spinner-border text-info" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
+            </h3>
+
+        </div>
+        <div *ngIf="!RegisterSuccess" class="container">
+            
+
+            <form (ngSubmit)="register()" [formGroup]="registerForm">
+
+                <div class="top-header">
+                    <header>Register</header>
+                </div>
+
+                <div class="input-field">
+                    <input name="acno" formControlName="acno" type="text" class="input" placeholder="Account Number"
+                        required>
+                    <i class="fa-solid fa-user"></i>
+                    <div *ngIf="this.registerForm.get('acno')?.errors&&this.registerForm.get('acno')?.touched"
+                        class="text-danger">
+                        *Invalid Account Number
+                    </div>
+                </div>
+                <div class="input-field">
+                    <input name="username" formControlName="username" type="text" class="input" placeholder="Username"
+                        required>
+                    <i class="fa-solid fa-user"></i>
+                    <div *ngIf="this.registerForm.get('username')?.errors&&this.registerForm.get('username')?.touched"
+                        class="text-danger">
+                        *Invalid Username
+                    </div>
+                </div>
+                <div class="input-field">
+                    <input name="password" formControlName="password" type="password" class="input"
+                        placeholder="Password" required>
+                    <i class="fa-solid fa-lock"></i>
+                    <div *ngIf="this.registerForm.get('password')?.errors&&this.registerForm.get('password')?.touched"
+                        class="text-danger">
+                        *Invalid Password
+                    </div>
+                </div>
+                <div class="input-field">
+                    <h4 class="text-danger">{{RegisterError}}</h4>
+                    <input type="submit" class="submit" value="Sign up">
+                </div>
+                <div class="bottom">
+
+                    <div class="right">
+                        <label class="ms-4">Already Have an Account? <a routerLink="/login" class="m-2">Login
+                                Here</a></label>
+                    </div>
+
+                </div>
+            </form>
+
+        </div>
+
+    </div>
+
+
+</div>
